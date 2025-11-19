@@ -1,0 +1,5 @@
+{
+  "name": "Rubik's Auto-Solver",
+  "description": "A high-fidelity 3D Rubik's Cube that features realistic interactions and an auto-solve capability that reverses the scramble history.",
+  "requestFramePermissions": []
+}
