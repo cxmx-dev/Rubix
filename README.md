@@ -1,20 +1,45 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Rubix
 
-# Run and deploy your AI Studio app
+**Rubix** is a high-fidelity, interactive 3D Rubik's Cube simulation built with React, Three.js, and Tailwind CSS. It features realistic physics, smooth animations, and a smart auto-solve capability.
 
-This contains everything you need to run your app locally.
+![Rubix Preview](https://raw.githubusercontent.com/cxmx-dev/Rubix/main/public/screenshot.png)
+*(Note: You can upload a screenshot to a public folder to make this image appear)*
 
-View your app in AI Studio: https://ai.studio/apps/drive/1VOK2olMiYa7fqUuFK6C13edDvFBdcfyG
+## 🚀 Live Demo
+Play with the cube here: **[https://cxmx-dev.github.io/Rubix/](https://cxmx-dev.github.io/Rubix/)**
 
-## Run Locally
+## ✨ Features
 
-**Prerequisites:**  Node.js
+*   **Interactive 3D Controls:** Rotate the entire cube or individual layers with realistic drag gestures.
+*   **Smart Scramble:** Generates non-redundant moves for a chaotic but solvable puzzle.
+*   **Auto-Solve Engine:** Tracks your moves and animates the solution in reverse to return to the solved state.
+*   **Beautiful UI:** Glassmorphism controls, dynamic lighting, and a sleek "Dark Mode" aesthetic.
 
+## 🛠️ Tech Stack
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+*   **React 19**
+*   **Three.js** (@react-three/fiber)
+*   **Vite**
+*   **Tailwind CSS**
+
+## 📦 Installation
+
+1.  Clone the repo:
+    ```bash
+    git clone https://github.com/cxmx-dev/Rubix.git
+    ```
+2.  Install dependencies:
+    ```bash
+    npm install
+    ```
+3.  Run development server:
+    ```bash
+    npm run dev
+    ```
+
+## 🤝 Contributing
+
+Feel free to open issues or submit pull requests!
+
+---
+*Created by cxmx-dev*
