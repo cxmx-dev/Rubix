@@ -1,4 +1,18 @@
-# Logs
+# --- local only (never published) ---
+scripts/
+docs/
+PLAN.md
+NOTES.md
+*.zip
+metadata.json
+
+# build / deps
+node_modules
+dist
+dist-ssr
+*.local
+
+# logs
 logs
 *.log
 npm-debug.log*
@@ -7,12 +21,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
+# editor
 .vscode/*
 !.vscode/extensions.json
 .idea
