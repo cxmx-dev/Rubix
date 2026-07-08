@@ -39,7 +39,7 @@ const App: React.FC = () => {
     <div className="relative w-full h-full bg-slate-950 text-white font-sans overflow-hidden select-none">
       {/* 3D Scene */}
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-900 to-black">
-        <Canvas shadows dpr={[1, 2]} gl={{ antialias: true }}>
+        <Canvas shadows dpr={[1, 2]} gl={{ antialias: true, preserveDrawingBuffer: true }}>
           <PerspectiveCamera makeDefault position={[6, 5, 6]} fov={40} />
           <ambientLight intensity={0.6} />
           <directionalLight position={[10, 10, 5]} intensity={1.5} castShadow shadow-mapSize={[1024, 1024]} />
