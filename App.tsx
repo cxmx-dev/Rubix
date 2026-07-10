@@ -39,7 +39,18 @@ const App: React.FC = () => {
     <div className="relative w-full h-full bg-slate-950 text-white font-sans overflow-hidden select-none">
       {/* 3D Scene */}
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-900 to-black">
-        <Canvas shadows dpr={[1, 2]} gl={{ antialias: true, preserveDrawingBuffer: true }}>
+        <Canvas
+          shadows
+          dpr={
+            typeof window !== 'undefined' &&
+            window.matchMedia &&
+            window.matchMedia('(pointer: coarse)').matches
+              ? ([1, 1.5] as [number, number])
+              : ([1, 2] as [number, number])
+          }
+          gl={{ antialias: true, preserveDrawingBuffer: true }}
+          style={{ touchAction: 'none' }}
+        >
           <PerspectiveCamera makeDefault position={[6, 5, 6]} fov={40} />
           <ambientLight intensity={0.6} />
           <directionalLight position={[10, 10, 5]} intensity={1.5} castShadow shadow-mapSize={[1024, 1024]} />
@@ -58,18 +69,21 @@ const App: React.FC = () => {
           </Suspense>
           
           <OrbitControls 
-            enablePan={false} 
+            enablePan={false}
+            enableZoom={true}
+            enableRotate={true}
             minDistance={5} 
             maxDistance={20} 
             dampingFactor={0.05}
+            rotateSpeed={0.85}
             autoRotate={!isSolving && !isScrambling && moveCount > 0}
             autoRotateSpeed={1.0}
           />
         </Canvas>
       </div>
 
-      {/* UI Overlay */}
-      <div className="absolute inset-0 z-10 pointer-events-none flex flex-col justify-between p-6 md:p-8">
+      {/* UI Overlay — larger hit targets on phone */}
+      <div className="absolute inset-0 z-10 pointer-events-none flex flex-col justify-between p-4 sm:p-6 md:p-8 pb-[max(1rem,env(safe-area-inset-bottom))]">
         
         {/* Header */}
         <div className="flex justify-between items-start pointer-events-auto animate-fade-in-down">
@@ -127,7 +141,7 @@ const App: React.FC = () => {
             <button 
               onClick={handleReset}
               disabled={isSolving || isScrambling}
-              className="flex flex-col items-center justify-center w-14 h-14 rounded-xl bg-slate-800/50 hover:bg-slate-700 text-slate-400 hover:text-white disabled:opacity-40 disabled:cursor-not-allowed transition-all active:scale-95 border border-transparent hover:border-slate-600"
+              className="flex flex-col items-center justify-center w-14 h-14 min-w-[3.5rem] min-h-[3.5rem] rounded-xl bg-slate-800/50 hover:bg-slate-700 text-slate-400 hover:text-white disabled:opacity-40 disabled:cursor-not-allowed transition-all active:scale-95 border border-transparent hover:border-slate-600 touch-manipulation"
               title="Reset Cube"
             >
               <RotateCcw size={20} />
@@ -138,7 +152,7 @@ const App: React.FC = () => {
             <button 
               onClick={handleScramble}
               disabled={isSolving || isScrambling}
-              className="flex-1 flex items-center justify-center gap-2 h-14 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:bg-slate-800 disabled:text-slate-600 disabled:cursor-not-allowed text-white font-bold transition-all shadow-lg shadow-indigo-900/20 hover:shadow-indigo-900/40 active:scale-95 group"
+              className="flex-1 flex items-center justify-center gap-2 h-14 min-h-[3.5rem] rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:bg-slate-800 disabled:text-slate-600 disabled:cursor-not-allowed text-white font-bold transition-all shadow-lg shadow-indigo-900/20 hover:shadow-indigo-900/40 active:scale-95 group touch-manipulation"
             >
               <Shuffle size={18} className={`transition-transform group-hover:rotate-180 ${isScrambling ? 'animate-spin' : ''}`} />
               <span>Scramble</span>
@@ -147,7 +161,7 @@ const App: React.FC = () => {
             <button 
               onClick={handleSolve}
               disabled={isSolving || isScrambling || moveCount === 0}
-              className={`flex-1 flex items-center justify-center gap-2 h-14 rounded-xl font-bold transition-all shadow-lg active:scale-95
+              className={`flex-1 flex items-center justify-center gap-2 h-14 min-h-[3.5rem] rounded-xl font-bold transition-all shadow-lg active:scale-95 touch-manipulation
                 ${moveCount === 0 
                   ? 'bg-slate-800 text-slate-600 cursor-not-allowed' 
                   : 'bg-emerald-500 hover:bg-emerald-400 text-white shadow-emerald-900/20 hover:shadow-emerald-900/40'}`}
@@ -158,7 +172,7 @@ const App: React.FC = () => {
           </div>
           
           <div className="text-center mt-4 pb-2">
-             <p className="text-[10px] uppercase tracking-[0.2em] text-slate-600 font-semibold">
+             <p className="rubix-hint text-[10px] uppercase tracking-[0.2em] text-slate-600 font-semibold">
                 {isSolving ? 'Computing Solution...' : 'Drag to Rotate View'}
               </p>
           </div>
