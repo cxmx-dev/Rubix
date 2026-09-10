@@ -1,16 +1,8 @@
-# --- hub deploy + local docs (never published) ---
 _project.ps1
 ensure-publish.ps1
 push-pages.ps1
 start.ps1
 docs/
-PLAN.md
-NOTES.md
-iteration-log.md
-NOTES.txt
-README.dev.md
-USER-*.md
-*convo*
 scripts/
 !scripts/sanitize-timezones.sh
 !scripts/sanitize-timezones.ps1
