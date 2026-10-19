@@ -1,0 +1,22 @@
+docs/
+scripts/
+!scripts/sanitize-timezones.sh
+!scripts/sanitize-timezones.ps1
+tests/
+pics/
+*.zip
+metadata.json
+
+# build / deps
+node_modules
+dist
+dist-ssr
+*.local
+
+# logs / editor
+.DS_Store
+*.log
+npm-debug.log*
+.vscode/*
+!.vscode/extensions.json
+.idea
